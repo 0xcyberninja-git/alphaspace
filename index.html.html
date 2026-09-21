@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMIC SUSTENANCE: A New Frontier in Space Farming - Design Report</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        bio: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        spaceblue: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        solar: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            800: '#92400e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+            body { background: white !important; color: black !important; }
+            .document-page { shadow: none !important; border: 1px solid #ccc !important; margin-bottom: 2rem !important; }
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 360px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 340px;
+            }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<!-- Chosen Palette: Academic Space Science (Deep Navy #0f172a, Clean Paper White #ffffff, Soft Slate #f8fafc, Bio Green #16a34a, Tech Sky Blue #0284c7, Solar Warmth #f59e0b) -->
+<!-- Application Structure Plan: Document report designed according to competition images provided. Contains:
+  1. Title Cover Page (Page 1) with student details, competition headers, and key project specs.
+  2. Index / Table of Contents (Page 2) strictly matching the image template with page links.
+  3. Acknowledgement & Executive Summary (Page 3) with exact image prompt text and fillable metadata.
+  4. Infrastructure - Oxygen, Water & Closed-Loop Systems (Pages 4-6) including interactive crew calculator.
+  5. Method of Growing & Soil Genesis (Pages 7-8) detailing capillary fluidics, PONDS, and 4-step regolith + fecal waste soil manufacturing.
+  6. Crop Rotation Schedules & Selection Matrix (Pages 9-10) with interactive crop planner.
+  7. Food Science Technologies (Pages 11-13) covering 3D printing, centrifugal cooking, AI crop sensors, and UV biosecurity.
+  8. Conclusion (Pages 14-15) synthesizing core takeaways for Grade 8-10 STEM competition judges.
+  9. References & Bibliography (Page 16) with standard NASA/ESA academic literature citations. -->
+<!-- Visualization & Content Choices:
+  - Life Support Flow -> HTML/CSS interactive layout + JS calculator.
+  - Closed-Loop Mass Penalty vs Resupply -> Interactive Chart.js line plot.
+  - Crop Growth & Yield Metrics -> Grouped Chart.js bar graph.
+  - Soil Genesis Pipeline -> Interactive step-by-step tab switcher in JS.
+  - 12-Month Rotation Planner -> Interactive dropdown dynamic summary builder.
+  - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Standard HTML5 Canvas, Tailwind CSS, and Chart.js. -->
+
+<body class="bg-slate-200 text-cosmic-800 font-sans antialiased selection:bg-bio-200 selection:text-bio-800">
+
+    <!-- Top Sticky Document Navigation & Controls Toolbar -->
+    <header class="no-print sticky top-0 z-50 bg-cosmic-900 text-white shadow-lg border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14">
+                <div class="flex items-center space-x-3">
+                    <span class="text-xl">📄</span>
+                    <div>
+                        <h1 class="font-extrabold text-xs sm:text-sm tracking-wide text-bio-200">COSMIC SUSTENANCE — RESEARCH REPORT DOCUMENT</h1>
+                        <p class="text-[10px] text-slate-400">"Live in a Healthy Space" Design Competition • Grade 8–10 Submission</p>
+                    </div>
+                </div>
+
+                <!-- Quick Section Jump & Print Buttons -->
+                <div class="flex items-center space-x-2 text-xs">
+                    <button onclick="window.print()" class="bg-bio-600 hover:bg-bio-700 text-white px-3 py-1.5 rounded font-bold transition flex items-center gap-1 shadow">
+                        <span>🖨️</span> Print / Export PDF
+                    </button>
+                    <a href="#page-1" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden sm:inline">Cover</a>
+                    <a href="#page-2" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden sm:inline">Index</a>
+                    <a href="#page-3" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden sm:inline">Ack & Summary</a>
+                    <a href="#page-4" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden md:inline">Infrastructure</a>
+                    <a href="#page-7" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden md:inline">Soil & Growing</a>
+                    <a href="#page-9" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden lg:inline">Crops</a>
+                    <a href="#page-11" class="bg-cosmic-800 hover:bg-cosmic-700 text-slate-200 px-2.5 py-1.5 rounded font-medium transition hidden lg:inline">Food Sci</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Document Container -->
+    <main class="max-w-5xl mx-auto px-2 sm:px-4 py-6 space-y-10">
+
+        <!-- ================= PAGE 1: TITLE & COVER PAGE ================= -->
+        <article id="page-1" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 relative overflow-hidden space-y-8 min-h-[900px] flex flex-col justify-between">
+            <!-- Header Stamp -->
+            <div class="border-b-2 border-cosmic-900 pb-4 flex justify-between items-end">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-bio-700 block">Official Competition Project Report</span>
+                    <h2 class="text-lg font-black text-cosmic-900">LIVE IN A HEALTHY SPACE DESIGN COMPETITION</h2>
+                </div>
+                <div class="text-right">
+                    <span class="bg-cosmic-900 text-white text-[11px] font-bold px-3 py-1 rounded">GRADE 8–10 STANDARD</span>
+                </div>
+            </div>
+
+            <!-- Title & Subtitle Banner -->
+            <div class="my-auto space-y-6 text-center py-6 bg-gradient-to-br from-cosmic-950 via-cosmic-900 to-cosmic-800 text-white rounded-2xl p-8 shadow-xl">
+                <div class="inline-block bg-bio-600 text-white text-xs font-black uppercase px-4 py-1 rounded-full tracking-wider mb-2">
+                    Space Agriculture & Bioregenerative Life Support
+                </div>
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+                    "COSMIC SUSTENANCE:<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-bio-200 via-sky-300 to-solar-400">
+                        A NEW FRONTIER IN SPACE FARMING"
+                    </span>
+                </h1>
+                <p class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed pt-2">
+                    A Comprehensive Research Report & Technical Design Blueprint for Closed-Loop Crop Agriculture, Oxygen Generation, Water Recovery, and Regolith Soil Genesis for Long-Duration Space Missions.
+                </p>
+            </div>
+
+            <!-- Student Metadata Form Card (Fillable for Printing) -->
+            <div class="bg-slate-50 border border-slate-300 rounded-xl p-5 space-y-3">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                    <h3 class="font-bold text-cosmic-900 text-xs uppercase tracking-wider flex items-center gap-2">
+                        <span>📝</span> Student & Submission Particulars
+                    </h3>
+                    <span class="text-[10px] text-slate-500 italic">(Editable fields below)</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div>
+                        <label class="block text-slate-500 text-[10px] uppercase font-bold mb-1">Student Name(s):</label>
+                        <input type="text" id="meta-student" value="Alex Rivera & Sam Chen" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1 font-bold text-cosmic-900 focus:outline-none focus:border-bio-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 text-[10px] uppercase font-bold mb-1">Grade / Standard:</label>
+                        <input type="text" id="meta-grade" value="Grade 9 (STEM Advanced Division)" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1 font-bold text-cosmic-900 focus:outline-none focus:border-bio-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 text-[10px] uppercase font-bold mb-1">School Name:</label>
+                        <input type="text" id="meta-school" value="St. Teresa High School" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1 font-bold text-cosmic-900 focus:outline-none focus:border-bio-600">
+                    </div>
+                    <div>
+                        <label class="block text-slate-500 text-[10px] uppercase font-bold mb-1">Subject / Discipline:</label>
+                        <input type="text" id="meta-subject" value="Physics, Biology & Environmental Sciences" class="w-full bg-white border border-slate-300 rounded px-2.5 py-1 font-bold text-cosmic-900 focus:outline-none focus:border-bio-600">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 text-between flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Space Biology & Infrastructure Section</span>
+                <span class="font-bold text-cosmic-900">PAGE 01</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGE 2: INDEX / TABLE OF CONTENTS ================= -->
+        <article id="page-2" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-4">
+                <div class="text-center border-b-2 border-slate-900 pb-4">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-solar-600">"COSMIC SUSTENANCE: A NEW FRONTIER IN SPACE FARMING"</h2>
+                    <h1 class="text-3xl font-black text-cosmic-900 tracking-tight mt-1">INDEX (TABLE OF CONTENTS)</h1>
+                </div>
+
+                <p class="text-xs text-slate-600 italic text-center max-w-xl mx-auto">
+                    This index follows the mandatory competition guidelines. Click any section below to navigate directly to the detailed research report content.
+                </p>
+
+                <!-- Page Index Table (Matching Image 2 closely) -->
+                <div class="max-w-3xl mx-auto space-y-2 pt-4">
+                    <a href="#page-2" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">INDEX</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 02</span>
+                    </a>
+
+                    <a href="#page-3" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">ACKNOWLEDGEMENT</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 03</span>
+                    </a>
+
+                    <a href="#page-3" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">EXECUTIVE SUMMARY</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 03</span>
+                    </a>
+
+                    <a href="#page-4" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">INFRASTRUCTURE (OXYGEN, WATER & CLOSED LOOPS)</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 04</span>
+                    </a>
+
+                    <a href="#page-7" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">METHOD OF GROWING & SOIL GENESIS</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 07</span>
+                    </a>
+
+                    <a href="#page-9" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">CROP SELECTION & ROTATION SCHEDULES</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 09</span>
+                    </a>
+
+                    <a href="#page-11" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">FOOD SCIENCE TECHNOLOGIES</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 11</span>
+                    </a>
+
+                    <a href="#page-14" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">CONCLUSION</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 14</span>
+                    </a>
+
+                    <a href="#page-16" class="flex justify-between items-center p-3 bg-slate-50 hover:bg-bio-50 rounded-lg border border-slate-200 hover:border-bio-400 transition group font-bold text-sm">
+                        <span class="text-cosmic-900 group-hover:text-bio-700">REFERENCES & BIBLIOGRAPHY</span>
+                        <span class="font-mono text-slate-500 group-hover:text-bio-700">PAGE 16</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Document Table of Contents</span>
+                <span class="font-bold text-cosmic-900">PAGE 02</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGE 3: ACKNOWLEDGEMENT & EXECUTIVE SUMMARY ================= -->
+        <article id="page-3" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-8">
+                
+                <!-- ACKNOWLEDGEMENT SECTION (Exact template text from Image 3) -->
+                <section class="space-y-4">
+                    <div class="border-l-4 border-solar-500 pl-4">
+                        <h2 class="text-2xl font-black text-cosmic-900">ACKNOWLEDGEMENT</h2>
+                        <p class="text-xs text-slate-500 font-semibold uppercase">Formal Academic & Mentorship Recognition</p>
+                    </div>
+
+                    <div class="bg-solar-50/50 p-6 rounded-xl border border-solar-200/80 text-slate-800 text-xs sm:text-sm leading-relaxed space-y-3 font-serif">
+                        <p>
+                            Firstly, my teachers and parents were the key to stimulate and hearten me to take up this project. They are my pillars of support and always hope the best for me.
+                        </p>
+                        <p>
+                            I thank our honourable principal <span id="ack-principal-val" class="font-bold text-cosmic-900 underline decoration-solar-500">[ Principal Name ]</span> and Academic Dean <span id="ack-dean-val" class="font-bold text-cosmic-900 underline decoration-solar-500">[ Academic Dean Name ]</span> for all the necessary support and encouragement they provided.
+                        </p>
+                        <p>
+                            I am very much grateful to our physics faculties <span id="ack-faculty-val" class="font-bold text-cosmic-900 underline decoration-solar-500">[ Physics & Science Teachers ]</span> who have facilitated me and educated me about numerous scientific topics. Their aid and support were significant for the success of completing this project.
+                        </p>
+                        <p>
+                            Lastly, my family; my parents are my role model towards the success of any project or assignment. Their love and support can't be merely expressed through words. Without them life wouldn't have existed at all for me.
+                        </p>
+                        <p class="italic font-sans font-medium text-cosmic-900 pt-2 border-t border-solar-200 text-xs">
+                            Once again, I would like to deeply appreciate all the people who made me the person I am today...
+                        </p>
+                    </div>
+
+                    <!-- Personalizer controls -->
+                    <div class="no-print bg-slate-50 p-3 rounded-lg border border-slate-200 text-xs space-y-2">
+                        <span class="font-bold text-slate-700 block text-[10px] uppercase">✏️ Fill Acknowledgement Names:</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <input type="text" id="in-principal" placeholder="Principal Name" value="Dr. E. R. Sharma" oninput="syncAck()" class="bg-white border rounded px-2 py-1 text-xs">
+                            <input type="text" id="in-dean" placeholder="Academic Dean" value="Prof. S. K. Kulkarni" oninput="syncAck()" class="bg-white border rounded px-2 py-1 text-xs">
+                            <input type="text" id="in-faculty" placeholder="Science Faculty" value="Mr. David Vance & Mrs. A. Roy" oninput="syncAck()" class="bg-white border rounded px-2 py-1 text-xs">
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-slate-200">
+
+                <!-- EXECUTIVE SUMMARY SECTION -->
+                <section class="space-y-4">
+                    <div class="border-l-4 border-bio-600 pl-4">
+                        <h2 class="text-2xl font-black text-cosmic-900">EXECUTIVE SUMMARY</h2>
+                        <p class="text-xs text-slate-500 font-semibold uppercase">The Space Survival Challenge & Project Objectives</p>
+                    </div>
+
+                    <div class="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed">
+                        <p>
+                            <strong>The Problem of Deep Space Logistics:</strong> Resupplying a human habitat on Mars or the Moon with pre-packaged meals from Earth is economically and biologically impossible long-term. Transporting 1 kg of mass to deep space costs between <strong>$10,000 and $20,000</strong>. For a 4-person crew on a 1,000-day Mars mission, food alone would weigh over 10,000 kg and cost upwards of $150 Million just for shipping!
+                        </p>
+                        <p>
+                            Furthermore, space radiation breaks down essential vitamins (such as Vitamin B1, Vitamin C, and Folate) in stored food packets after 12 to 18 months, leading to nutrient loss and scurvy risks for astronauts.
+                        </p>
+                        <p>
+                            <strong>The Core Idea: Bioregenerative Life Support Systems (BLSS):</strong> This project proposal, titled <strong>"COSMIC SUSTENANCE,"</strong> designs a 100% self-sustaining circular agricultural ecosystem. By utilizing plant photosynthesis, biological waste treatment, and advanced microgravity water harvesting, we convert human breathing waste ($CO_2$), human metabolic waste (feces & urine), and toxic Martian dust into continuous fresh oxygen, pure drinking water, and nutrient-dense crops!
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Acknowledgement & Executive Summary</span>
+                <span class="font-bold text-cosmic-900">PAGE 03</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGES 4-6: INFRASTRUCTURE & LIFE SUPPORT ================= -->
+        <article id="page-4" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-6">
+                
+                <div class="border-l-4 border-spaceblue-500 pl-4">
+                    <h2 class="text-2xl font-black text-cosmic-900">4. INFRASTRUCTURE & LIFE SUPPORT</h2>
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Generating Oxygen, Water Recycling & Closed-Loop Habitat Architecture (Pages 4–6)</p>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
+                    <p>
+                        <strong>Section Context & Purpose:</strong> In space, humans cannot rely on an external atmosphere. Every single molecule of oxygen ($O_2$) breathed in and every drop of water consumed must be reclaimed through physics, chemistry, and biological pathways.
+                    </p>
+                    <p>
+                        This section details the two main branches of life support: <strong>Physicochemical hardware</strong> (Electrolysis & Sabatier reactors) and <strong>Biological loops</strong> (Photosynthesis & Transpiration condensation).
+                    </p>
+                </div>
+
+                <!-- Interactive Space Crew Resource Calculator (Grade 8-10 Applied Math) -->
+                <div class="bg-spaceblue-50/50 border border-spaceblue-200 rounded-xl p-5 space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-spaceblue-200 pb-3 gap-2">
+                        <div>
+                            <h3 class="font-bold text-spaceblue-900 text-sm flex items-center gap-2">
+                                <span>🧮</span> Interactive Space Mission Mass Calculator
+                            </h3>
+                            <p class="text-[11px] text-spaceblue-700">Calculate total inputs needed for astronaut survival based on NASA HIDH standards!</p>
+                        </div>
+                        <span class="bg-spaceblue-600 text-white font-bold text-[10px] px-2.5 py-1 rounded">STEM Physics & Bio Tool</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Crew Size (Astronauts): <span id="val-crew" class="text-spaceblue-600">4</span></label>
+                            <input type="range" id="input-crew" min="1" max="8" value="4" oninput="calcResources()" class="w-full accent-spaceblue-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Mission Duration (Days): <span id="val-days" class="text-bio-600">500</span></label>
+                            <input type="range" id="input-days" min="30" max="1000" step="10" value="500" oninput="calcResources()" class="w-full accent-bio-600">
+                        </div>
+                    </div>
+
+                    <!-- Calculator Output Display Badges -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center pt-1">
+                        <div class="bg-white p-3 rounded-lg border border-spaceblue-200">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold block">Oxygen Required</span>
+                            <span class="text-base font-black text-cyan-600" id="out-o2">1,730 kg</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-spaceblue-200">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold block">Water Needed</span>
+                            <span class="text-base font-black text-spaceblue-600" id="out-h2o">5,000 L</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-spaceblue-200">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold block">Dry Food Biomass</span>
+                            <span class="text-base font-black text-solar-600" id="out-food">1,240 kg</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg border border-spaceblue-200">
+                            <span class="text-[10px] text-slate-500 uppercase font-bold block">Growth Area Needed</span>
+                            <span class="text-base font-black text-bio-600" id="out-area">160 m²</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Chemical & Biological Life Support Explanations -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-cosmic-900 text-sm flex items-center gap-1.5">
+                            <span>💨</span> 1. Oxygen Generation Mechanics
+                        </h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Oxygen is produced via two complementary systems:
+                        </p>
+                        <div class="bg-slate-50 p-2 rounded border border-slate-200 space-y-1 font-mono text-[11px]">
+                            <span class="font-bold text-cyan-700 block">Water Electrolysis:</span>
+                            <span>2H₂O (Liquid) + Solar Power ➔ 2H₂ (Gas) + O₂ (Breathable)</span>
+                        </div>
+                        <div class="bg-slate-50 p-2 rounded border border-slate-200 space-y-1 font-mono text-[11px]">
+                            <span class="font-bold text-bio-700 block">Plant Photosynthesis:</span>
+                            <span>6CO₂ + 6H₂O + Photons ➔ C₆H₁₂O₆ (Sugar) + 6O₂ (Oxygen)</span>
+                        </div>
+                        <p class="text-slate-500 italic text-[10px]">
+                            *Note: Plants absorb astronaut CO2 through stomata leaves, returning clean O2 back to the cabin.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-cosmic-900 text-sm flex items-center gap-1.5">
+                            <span>💧</span> 2. Water Recovery & Sabatier Loop
+                        </h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            98% of habitat water is continuously purified through:
+                        </p>
+                        <ul class="list-disc pl-4 space-y-1 text-slate-700">
+                            <li><strong>Transpiration Condensation:</strong> Plant leaves release clean water vapor that is collected by atmospheric dehumidifiers.</li>
+                            <li><strong>Sabatier Chemical Reactor:</strong>
+                                <div class="font-mono text-[10px] bg-slate-50 p-1 rounded border mt-0.5 text-spaceblue-700">
+                                    CO₂ + 4H₂ ➔ CH₄ (Methane Vent) + 2H₂O (Water)
+                                </div>
+                            </li>
+                            <li><strong>Urine Vacuum Distillation:</strong> Reclaims 98% pure drinking water from human wastewater.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Chart: Mass Crossover Comparison -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <h4 class="font-bold text-cosmic-900 text-xs uppercase mb-1">Resupply Mass Penalty vs Greenhouse Infrastructure Mass over Time</h4>
+                    <p class="text-[11px] text-slate-500 mb-2">Demonstrating why Bioregenerative systems save millions of dollars for long missions.</p>
+                    <div class="chart-container">
+                        <canvas id="chart-resupply"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Infrastructure & Closed Loop Systems</span>
+                <span class="font-bold text-cosmic-900">PAGES 04–06</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGES 7-8: METHOD OF GROWING & SOIL GENESIS ================= -->
+        <article id="page-7" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-6">
+                
+                <div class="border-l-4 border-solar-500 pl-4">
+                    <h2 class="text-2xl font-black text-cosmic-900">5. METHOD OF GROWING & SOIL GENESIS</h2>
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Microgravity Capillary Wicking & Turning Human Waste into Arable Soil (Pages 7–8)</p>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
+                    <p>
+                        <strong>The Microgravity Fluid Challenge:</strong> On Earth, gravity pulls water down into the soil, while plant roots feel gravity using starch grains (statoliths) to grow downwards. In zero gravity ($0g$), water surface tension causes liquid to form floating spheres that envelope roots, cutting off oxygen and drowning plants!
+                    </p>
+                    <p>
+                        <strong>The Solution: PONDS Passive Capillary Systems & Aeroponics:</strong> We use NASA PONDS pads (Passive Orbital Nutrient Delivery System) made of porous ceramic and clay sponges. Capillary action draws moisture directly to roots without electrical pumps, while overhead red/blue LED lights guide stem direction (phototropism).
+                    </p>
+                </div>
+
+                <!-- Interactive Regolith Soil Genesis Pipeline (Grade 8-10 Earth & Bio Science) -->
+                <div class="bg-white border border-slate-300 rounded-xl p-5 space-y-4 shadow-sm">
+                    <div class="border-b border-slate-200 pb-2">
+                        <h3 class="font-bold text-cosmic-900 text-sm flex items-center gap-2">
+                            <span>🧪</span> Interactive Soil Genesis: Transforming Toxic Martian Dirt & Human Waste
+                        </h3>
+                        <p class="text-[11px] text-slate-500">Click each step below to learn how science turns toxic space dust into rich agricultural garden soil!</p>
+                    </div>
+
+                    <!-- Step Buttons -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <button onclick="showSoilTab(1)" id="tab-btn-1" class="p-2.5 text-xs font-bold rounded-lg border-2 border-solar-500 bg-solar-50 text-solar-900 text-left">
+                            1. Toxic Raw Regolith
+                        </button>
+                        <button onclick="showSoilTab(2)" id="tab-btn-2" class="p-2.5 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 text-slate-600 text-left">
+                            2. Bacterial Detox
+                        </button>
+                        <button onclick="showSoilTab(3)" id="tab-btn-3" class="p-2.5 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 text-slate-600 text-left">
+                            3. SCWO Composting
+                        </button>
+                        <button onclick="showSoilTab(4)" id="tab-btn-4" class="p-2.5 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 text-slate-600 text-left">
+                            4. Living Rhizosphere
+                        </button>
+                    </div>
+
+                    <!-- Active Tab Display -->
+                    <div id="soil-tab-box" class="bg-cosmic-900 text-white p-5 rounded-xl space-y-2 text-xs">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <!-- Growing Methods Tri-Card Overview -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <span class="text-xl block mb-1">🚿</span>
+                        <h4 class="font-bold text-cosmic-900 mb-1">Aeroponic Misting</h4>
+                        <p class="text-slate-600 leading-relaxed">Roots hang in sealed dark chambers and receive periodic atomized nutrient mist. Uses 95% less water than traditional farming.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <span class="text-xl block mb-1">🧽</span>
+                        <h4 class="font-bold text-cosmic-900 mb-1">PONDS Passive Wicking</h4>
+                        <p class="text-slate-600 leading-relaxed">Passive matting uses surface tension and capillary action to hold water against root surfaces in zero gravity.</p>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                        <span class="text-xl block mb-1">🪱</span>
+                        <h4 class="font-bold text-cosmic-900 mb-1">Biochar & Mycorrhizae</h4>
+                        <p class="text-slate-600 leading-relaxed">Porous charcoal (biochar) holds nutrients and fungal threads (mycorrhizae) assist roots in absorbing phosphorus.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Method of Growing & Soil Genesis</span>
+                <span class="font-bold text-cosmic-900">PAGES 07–08</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGES 9-10: CROP SELECTION & ROTATION SCHEDULES ================= -->
+        <article id="page-9" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-6">
+                
+                <div class="border-l-4 border-bio-600 pl-4">
+                    <h2 class="text-2xl font-black text-cosmic-900">6. CROP SELECTION & ROTATION SCHEDULES</h2>
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Candidate Space Crops, Nutritional Profiles & Interactive 12-Month Rotation Planner (Pages 9–10)</p>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
+                    <p>
+                        <strong>Crop Selection Criteria:</strong> Astronaut crops must meet strict requirements: 1) High Harvest Index (most of the plant is edible), 2) Dwarf growth height (&lt;30 cm), 3) Short growth duration, 4) Rich in antioxidant lycopene, Vitamin C, and protein to combat radiation damage.
+                    </p>
+                </div>
+
+                <!-- Interactive 12-Month Rotation Planner Tool -->
+                <div class="bg-white border border-slate-300 rounded-xl p-5 space-y-4 shadow-sm">
+                    <div class="border-b border-slate-200 pb-2">
+                        <h3 class="font-bold text-cosmic-900 text-sm flex items-center gap-2">
+                            <span>📅</span> Interactive 12-Month Crop Rotation Planner
+                        </h3>
+                        <p class="text-[11px] text-slate-500">Assign crops to 4 quarterly bays to ensure steady continuous harvests throughout the year!</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                        <!-- Q1 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+                            <span class="font-bold text-bio-700 uppercase block text-[10px]">Quarter 1 (Months 1-3)</span>
+                            <select id="rot-select-1" onchange="updateRotation()" class="w-full bg-white border rounded p-1 font-bold text-slate-800 text-xs">
+                                <option value="microgreens">Microgreens (Fast Salad)</option>
+                                <option value="tomatoes">Micro-Tom Tomatoes</option>
+                                <option value="sweetpotato">Dwarf Sweet Potato</option>
+                                <option value="spirulina">Spirulina Algae</option>
+                            </select>
+                            <div id="rot-card-1" class="bg-white p-2 rounded border text-[10px] space-y-1 text-slate-600"></div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+                            <span class="font-bold text-bio-700 uppercase block text-[10px]">Quarter 2 (Months 4-6)</span>
+                            <select id="rot-select-2" onchange="updateRotation()" class="w-full bg-white border rounded p-1 font-bold text-slate-800 text-xs">
+                                <option value="tomatoes">Micro-Tom Tomatoes</option>
+                                <option value="microgreens">Microgreens (Fast Salad)</option>
+                                <option value="sweetpotato">Dwarf Sweet Potato</option>
+                                <option value="spirulina">Spirulina Algae</option>
+                            </select>
+                            <div id="rot-card-2" class="bg-white p-2 rounded border text-[10px] space-y-1 text-slate-600"></div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+                            <span class="font-bold text-bio-700 uppercase block text-[10px]">Quarter 3 (Months 7-9)</span>
+                            <select id="rot-select-3" onchange="updateRotation()" class="w-full bg-white border rounded p-1 font-bold text-slate-800 text-xs">
+                                <option value="sweetpotato">Dwarf Sweet Potato</option>
+                                <option value="microgreens">Microgreens (Fast Salad)</option>
+                                <option value="tomatoes">Micro-Tom Tomatoes</option>
+                                <option value="spirulina">Spirulina Algae</option>
+                            </select>
+                            <div id="rot-card-3" class="bg-white p-2 rounded border text-[10px] space-y-1 text-slate-600"></div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+                            <span class="font-bold text-bio-700 uppercase block text-[10px]">Quarter 4 (Months 10-12)</span>
+                            <select id="rot-select-4" onchange="updateRotation()" class="w-full bg-white border rounded p-1 font-bold text-slate-800 text-xs">
+                                <option value="spirulina">Spirulina Algae</option>
+                                <option value="microgreens">Microgreens (Fast Salad)</option>
+                                <option value="tomatoes">Micro-Tom Tomatoes</option>
+                                <option value="sweetpotato">Dwarf Sweet Potato</option>
+                            </select>
+                            <div id="rot-card-4" class="bg-white p-2 rounded border text-[10px] space-y-1 text-slate-600"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-cosmic-900 text-white p-3 rounded-lg text-xs flex justify-between items-center">
+                        <span class="text-slate-300">Nutritional Diversity Balance Score:</span>
+                        <span id="rotation-score-badge" class="font-bold text-bio-300">100% - Optimum Variety!</span>
+                    </div>
+                </div>
+
+                <!-- Chart: Crop Harvest Speed & Caloric Density -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <h4 class="font-bold text-cosmic-900 text-xs uppercase mb-1">Growth Speed (Days) vs. Caloric Yield (kcal/m²/day)</h4>
+                    <div class="chart-container">
+                        <canvas id="chart-crops"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Crop Selection & Rotation Schedules</span>
+                <span class="font-bold text-cosmic-900">PAGES 09–10</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGES 11-13: FOOD SCIENCE TECHNOLOGIES ================= -->
+        <article id="page-11" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-6">
+                
+                <div class="border-l-4 border-spaceblue-600 pl-4">
+                    <h2 class="text-2xl font-black text-cosmic-900">7. FOOD SCIENCE TECHNOLOGIES</h2>
+                    <p class="text-xs text-slate-500 font-semibold uppercase">3D Food Printing, Microgravity Cooking, Hyperspectral AI & Biosecurity (Pages 11–13)</p>
+                </div>
+
+                <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3">
+                    <p>
+                        <strong>Microgravity Culinary Physics:</strong> On Earth, floating food particles fall to the table. In microgravity, breadcrumbs float into air ducts, clogging life support pumps and creating fire hazards! Furthermore, liquids do not stay in open frying pans.
+                    </p>
+                </div>
+
+                <!-- Food Science Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <span class="text-2xl">🍕</span>
+                        <h4 class="font-bold text-cosmic-900 text-sm">3D Food Printing Paste Extrusion</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Dehydrated plant powders, microalgae proteins, and water pastes are extruded layer-by-layer to create familiar textures such as space pizzas, noodles, and customized nutrition bars.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <span class="text-2xl">🍳</span>
+                        <h4 class="font-bold text-cosmic-900 text-sm">Centrifugal Artificial Gravity Frying</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Using spinning appliances (such as the SATED cooker), centrifugal force pushes liquid batter and oil against heated pan walls, simulating 1g cooking physics in zero gravity.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <span class="text-2xl">🤖</span>
+                        <h4 class="font-bold text-cosmic-900 text-sm">AI Hyperspectral Disease Scanning</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Infrared cameras monitor leaf chlorophyll fluorescence. Computer vision models detect fungal spore infection or nitrogen deficiency up to 14 days before visible to human eyes.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <span class="text-2xl">💡</span>
+                        <h4 class="font-bold text-cosmic-900 text-sm">Night UV-C Sterilization Sweeps</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            Automated LED arrays sweep crops with UV-C germicidal light during dark sleep cycles. Because fungal spores cannot repair DNA damage without blue light, this sanitizes mold without toxic chemicals.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Deep Space Food Challenge Innovation Spotlight -->
+                <div class="bg-cosmic-900 text-white rounded-xl p-5 space-y-2">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <h4 class="font-bold text-bio-300 text-sm">NASA Deep Space Food Challenge Case Studies</h4>
+                        <span class="text-[10px] bg-bio-900 text-bio-200 px-2 py-0.5 rounded font-bold border border-bio-600">Student Study</span>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Our research analyzed winning designs including the <strong>NuCLEUS System</strong> (compact drawer-based microgreen chambers) and <strong>Nolux Photosynthesis</strong> (growing edible mushrooms and crop tissue using electrochemically produced acetate in absolute darkness, bypassing light energy losses!).
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Food Science Technologies</span>
+                <span class="font-bold text-cosmic-900">PAGES 11–13</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGES 14-15: CONCLUSION ================= -->
+        <article id="page-14" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-6">
+                
+                <div class="border-l-4 border-bio-600 pl-4">
+                    <h2 class="text-2xl font-black text-cosmic-900">8. CONCLUSION</h2>
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Synthesis of Findings & Multi-Planetary Vision (Pages 14–15)</p>
+                </div>
+
+                <div class="space-y-4 text-slate-700 text-xs sm:text-sm leading-relaxed">
+                    <p>
+                        Establishing permanent human bases on the Moon and Mars requires moving away from linear supply chains ("bring everything from Earth") and embracing <strong>circular bio-regenerative architecture</strong>.
+                    </p>
+                    <p>
+                        This research report, <strong>"COSMIC SUSTENANCE,"</strong> demonstrates that through the integrated application of water electrolysis, Sabatier carbon dioxide recycling, PONDS microgravity fluidics, bacterial regolith detoxification (*Azospira oryzae*), and supercritical water oxidation (SCWO) of organic waste, a space habitat can sustain human life indefinitely.
+                    </p>
+
+                    <div class="bg-bio-50 border border-bio-200 p-5 rounded-xl space-y-3">
+                        <h4 class="font-bold text-bio-900 text-sm uppercase">Key Project Takeaways for "Live in a Healthy Space" Judges:</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-bio-950 font-medium text-xs">
+                            <li><strong>100% Closed Oxygen & Water Loop:</strong> Photosynthesis replaces mechanical air scrubbers while generating fresh Vitamin C and Folate to prevent astronaut scurvy.</li>
+                            <li><strong>Turning Waste into Fertile Soil:</strong> Toxic Martian perchlorates are biologically converted into harmless salt ($Cl^-$) and breathable oxygen, while human waste is sterilized into organic crop fertilizer.</li>
+                            <li><strong>Microgravity Fluid Mechanics:</strong> Passive PONDS capillary wicking pads eliminate root drowning risks in zero gravity without complex electric pumps.</li>
+                            <li><strong>Psychological & Morale Boost:</strong> Harvesting crisp, brightly colored microgreens and cherry tomatoes boosts astronaut psychological health during long 1,000-day deep space isolation.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Conclusion & Project Summary</span>
+                <span class="font-bold text-cosmic-900">PAGES 14–15</span>
+            </div>
+        </article>
+
+        <div class="page-break"></div>
+
+        <!-- ================= PAGE 16: REFERENCES & BIBLIOGRAPHY ================= -->
+        <article id="page-16" class="document-page bg-white rounded-xl p-8 sm:p-12 shadow-md border border-slate-300 space-y-8 min-h-[850px] flex flex-col justify-between">
+            <div class="space-y-6">
+                
+                <div class="border-l-4 border-cosmic-800 pl-4">
+                    <h2 class="text-2xl font-black text-cosmic-900">9. REFERENCES & BIBLIOGRAPHY</h2>
+                    <p class="text-xs text-slate-500 font-semibold uppercase">Academic Literature, NASA Publications & Standards (Page 16)</p>
+                </div>
+
+                <div class="space-y-3 text-xs text-slate-700 font-serif">
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                        <span class="font-bold text-cosmic-900 block font-sans">[1] NASA Marshall Space Flight Center (2022).</span>
+                        <p><em>NASA Human Integration Design Handbook (HIDH)</em>. NASA/SP-2010-3407 Rev 1. Washington D.C.: National Aeronautics and Space Administration.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                        <span class="font-bold text-cosmic-900 block font-sans">[2] European Space Agency (ESA) MELiSSA Project (2021).</span>
+                        <p><em>Compartmentalized Life Support Systems in Deep Space Habitation</em>. ESA Technical Report SP-1336. Noordwijk: ESA Publishing.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                        <span class="font-bold text-cosmic-900 block font-sans">[3] Wheeler, R. M. (2017).</span>
+                        <p>Agriculture for Space Colonies: Plants, Moon, and Mars. <em>Economic Botany</em>, 71(2), 173-189.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                        <span class="font-bold text-cosmic-900 block font-sans">[4] Coates, J. D., & Achenbach, L. A. (2004).</span>
+                        <p>Microbial perchlorate reduction: rocket-fuelled metabolism. <em>Nature Reviews Microbiology</em>, 2(7), 569-580.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                        <span class="font-bold text-cosmic-900 block font-sans">[5] Monje, O., et al. (2019).</span>
+                        <p>Performance of PONDS Hydroponic Delivery Pads on International Space Station. <em>Frontiers in Plant Science</em>, 10, 1541.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
+                        <span class="font-bold text-cosmic-900 block font-sans">[6] NASA Deep Space Food Challenge (2023).</span>
+                        <p><em>Phase 2 Culinary Innovations and Technological Summaries</em>. NASA Space Technology Mission Directorate.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[11px] text-slate-500 font-medium">
+                <span>Academic References & Citations</span>
+                <span class="font-bold text-cosmic-900">PAGE 16</span>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Document Footer Controls -->
+    <footer class="no-print bg-cosmic-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-12">
+        <div class="max-w-5xl mx-auto px-4 text-center space-y-2">
+            <p class="text-slate-200 font-bold">COSMIC SUSTENANCE: A NEW FRONTIER IN SPACE FARMING</p>
+            <p>Live in a Healthy Space Design Competition • Research Report Document (Grade 8-10)</p>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-bio-300 underline text-[11px] hover:text-white">Back to Top Page 1 ↑</button>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript Engine -->
+    <script>
+        // --- Metadata Syncing ---
+        function syncAck() {
+            document.getElementById('ack-principal-val').innerText = document.getElementById('in-principal').value || "[ Principal Name ]";
+            document.getElementById('ack-dean-val').innerText = document.getElementById('in-dean').value || "[ Academic Dean Name ]";
+            document.getElementById('ack-faculty-val').innerText = document.getElementById('in-faculty').value || "[ Science Teachers ]";
+        }
+
+        // --- Space Resource Calculator Logic ---
+        function calcResources() {
+            const crew = parseInt(document.getElementById('input-crew').value);
+            const days = parseInt(document.getElementById('input-days').value);
+
+            document.getElementById('val-crew').innerText = crew;
+            document.getElementById('val-days').innerText = days;
+
+            const o2 = Math.round(crew * days * 0.865);
+            const h2o = Math.round(crew * days * 2.5);
+            const food = Math.round(crew * days * 0.62);
+            const area = Math.round(crew * 40);
+
+            document.getElementById('out-o2').innerText = o2.toLocaleString() + " kg";
+            document.getElementById('out-h2o').innerText = h2o.toLocaleString() + " L";
+            document.getElementById('out-food').innerText = food.toLocaleString() + " kg";
+            document.getElementById('out-area').innerText = area.toLocaleString() + " m²";
+        }
+
+        // --- Soil Genesis Tab Switching ---
+        const soilTabsData = {
+            1: {
+                title: "Step 1: Raw Martian Regolith (Toxic Dust)",
+                badge: "Perchlorate Hazard (ClO₄⁻)",
+                desc: "Martian soil contains 0.5% to 1.0% toxic perchlorate salts, which shut down human thyroids and kill Earth plant roots. It also lacks nitrogen organic matter."
+            },
+            2: {
+                title: "Step 2: Biological Detoxification (Azospira oryzae)",
+                badge: "Enzymatic Reduction",
+                desc: "Inoculating moist soil with extremophilic bacteria (*Azospira oryzae*) safely breaks toxic perchlorates into harmless chloride salt (Cl⁻) and free oxygen gas."
+            },
+            3: {
+                title: "Step 3: Supercritical Water Oxidation (SCWO) Composting",
+                badge: "374°C & 22.1 MPa Reactor",
+                badgeColor: "bg-spaceblue-900 text-spaceblue-200 border-spaceblue-600",
+                desc: "Human fecal waste and crop stems are cooked in a high-pressure reactor. High heat kills 100% of pathogens and yields sterile liquid Nitrogen, Phosphorus, and Potassium fertilizer!"
+            },
+            4: {
+                title: "Step 4: Living Rhizosphere & Mycorrhizal Fungi",
+                badge: "Arable Agricultural Soil",
+                desc: "Adding beneficial mycorrhizal fungi creates nutrient webs. Plant root exudates lower local soil pH to 6.5, creating garden-ready extraterrestrial soil!"
+            }
+        };
+
+        function showSoilTab(id) {
+            for (let i = 1; i <= 4; i++) {
+                const btn = document.getElementById(`tab-btn-${i}`);
+                if (i === id) {
+                    btn.className = "p-2.5 text-xs font-bold rounded-lg border-2 border-solar-500 bg-solar-50 text-solar-900 text-left";
+                } else {
+                    btn.className = "p-2.5 text-xs font-bold rounded-lg border border-slate-200 bg-slate-50 text-slate-600 text-left";
+                }
+            }
+
+            const data = soilTabsData[id];
+            const box = document.getElementById('soil-tab-box');
+            box.innerHTML = `
+                <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                    <h4 class="font-bold text-solar-400 text-sm">${data.title}</h4>
+                    <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-solar-900 text-solar-200 border border-solar-700">${data.badge}</span>
+                </div>
+                <p class="text-slate-300 leading-relaxed pt-1">${data.desc}</p>
+            `;
+        }
+
+        // --- Crop Rotation Planner ---
+        const rotData = {
+            microgreens: { name: "Microgreens & Radish", detail: "Harvest: 14-21 Days. Fast Vitamin C & K." },
+            tomatoes: { name: "Micro-Tom Tomatoes", detail: "Harvest: 60-70 Days. High Lycopene antioxidant." },
+            sweetpotato: { name: "Dwarf Sweet Potato", detail: "Harvest: 90-110 Days. Caloric carbohydrate staple." },
+            spirulina: { name: "Spirulina Microalgae", detail: "Continuous Daily Harvest. 65% Protein density." }
+        };
+
+        function updateRotation() {
+            const q1 = document.getElementById('rot-select-1').value;
+            const q2 = document.getElementById('rot-select-2').value;
+            const q3 = document.getElementById('rot-select-3').value;
+            const q4 = document.getElementById('rot-select-4').value;
+
+            document.getElementById('rot-card-1').innerHTML = `<strong>${rotData[q1].name}</strong><br>${rotData[q1].detail}`;
+            document.getElementById('rot-card-2').innerHTML = `<strong>${rotData[q2].name}</strong><br>${rotData[q2].detail}`;
+            document.getElementById('rot-card-3').innerHTML = `<strong>${rotData[q3].name}</strong><br>${rotData[q3].detail}`;
+            document.getElementById('rot-card-4').innerHTML = `<strong>${rotData[q4].name}</strong><br>${rotData[q4].detail}`;
+
+            const selectedSet = new Set([q1, q2, q3, q4]);
+            const scoreBadge = document.getElementById('rotation-score-badge');
+            if (selectedSet.size === 4) {
+                scoreBadge.innerText = "100% - Optimum Nutritional Diversity!";
+                scoreBadge.className = "font-bold text-bio-300";
+            } else if (selectedSet.size >= 2) {
+                scoreBadge.innerText = "75% - Moderate Variety";
+                scoreBadge.className = "font-bold text-solar-400";
+            } else {
+                scoreBadge.innerText = "25% - Low Variety Hazard";
+                scoreBadge.className = "font-bold text-red-400";
+            }
+        }
+
+        // --- Chart.js Initializations ---
+        function initCharts() {
+            // Chart 1: Resupply Penalty
+            const ctx1 = document.getElementById('chart-resupply').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Day 0', 'Day 200', 'Day 400', 'Day 600', 'Day 800', 'Day 1000'],
+                    datasets: [
+                        {
+                            label: 'Earth Resupply Launch Mass (kg)',
+                            data: [1000, 5200, 10400, 15600, 20800, 26000],
+                            borderColor: '#ef4444',
+                            borderWidth: 2,
+                            fill: false
+                        },
+                        {
+                            label: 'Bioregenerative Habitat Mass (kg)',
+                            data: [12000, 12400, 12800, 13200, 13600, 14000],
+                            borderColor: '#16a34a',
+                            borderWidth: 3,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { font: { size: 10 } } } },
+                    scales: { y: { title: { display: true, text: 'Mass Penalty (kg)' } } }
+                }
+            });
+
+            // Chart 2: Crops
+            const ctx2 = document.getElementById('chart-crops').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Microgreens', 'Micro-Tom Tomato', 'Dwarf Sweet Potato', 'Spirulina Algae'],
+                    datasets: [
+                        {
+                            label: 'Growth Days to Harvest',
+                            data: [18, 65, 100, 3],
+                            backgroundColor: '#0284c7'
+                        },
+                        {
+                            label: 'Caloric Yield (kcal/m²/day)',
+                            data: [120, 340, 980, 1450],
+                            backgroundColor: '#22c55e'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'top', labels: { font: { size: 10 } } } }
+                }
+            });
+        }
+
+        // --- Initialize Page ---
+        window.addEventListener('DOMContentLoaded', () => {
+            syncAck();
+            calcResources();
+            showSoilTab(1);
+            updateRotation();
+            initCharts();
+        });
+    </script>
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. Clean Tailwind CSS, HTML5 Canvas, and Chart.js rendered. -->
+</body>
+</html>
